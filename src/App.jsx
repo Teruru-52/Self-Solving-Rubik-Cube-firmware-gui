@@ -1,4 +1,5 @@
 import { useState } from "react";
+import githubLogo from "./assets/github.png";
 import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
@@ -14,16 +15,12 @@ function App() {
 
   return (
     <main className="container">
-      {/* top right logos */}
-      <div className="top-right-logos">
-        <img src="/vite.svg" alt="Vite logo" className="small-logo" />
-        <img src="/tauri.svg" alt="Tauri logo" className="small-logo" />
-        <img src={reactLogo} alt="React logo" className="small-logo" />
-      </div>
-
       <h1>Welcome to Tauri + React</h1>
 
       <div className="row">
+        <a href="https://github.com/Teruru-52/Self-Solving-Rubik-Cube-firmware-gui" target="_blank">
+          <img src={githubLogo} className="logo github" alt="Github logo" />
+        </a>
         <a href="https://vitejs.dev" target="_blank">
           <img src="/vite.svg" className="logo vite" alt="Vite logo" />
         </a>
@@ -34,9 +31,9 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
+      {/* <p>Click on the Tauri, Vite, and React logos to learn more.</p> */}
 
-      <form
+      {/* <form
         className="row"
         onSubmit={(e) => {
           e.preventDefault();
@@ -49,7 +46,7 @@ function App() {
           placeholder="Enter a name..."
         />
         <button type="submit">Greet</button>
-      </form>
+      </form> */}
       <p>{greetMsg}</p>
     </main>
   );
