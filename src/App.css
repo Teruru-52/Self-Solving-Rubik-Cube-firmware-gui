@@ -92,6 +92,22 @@ button:active {
   background-color: #e8e8e8;
 }
 
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* 3列を等幅で配置 */
+  gap: 12px;
+  /* ボタンの間隔 */
+  margin-top: 20px;
+  /* 上との余白 */
+}
+
+.button-grid button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 input,
 button {
   outline: none;

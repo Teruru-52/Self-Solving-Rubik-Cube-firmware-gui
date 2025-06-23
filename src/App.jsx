@@ -7,10 +7,46 @@ import "./App.css";
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
+  const [connections, setConnections] = useState({
+    camera: false,
+    can: false
+  });
+  const [options, setOptions] = useState({
+    mode: "solve",
+    type: "normal"
+  });
+  const typeOptions = {
+    solve: ["normal", "checker", "heso", "string-H", "string-T", "stripe", "in-Cube"],
+    trick: ["move-24", "move-112", "move-126"],
+    test: ["move-U", "move-D", "move-R", "move-L", "move-F", "move-B"]
+  };
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
     setGreetMsg(await invoke("greet", { name }));
+  }
+
+  // Toggle connection state
+  function toggleConnection(type) {
+    setConnections((prev) => ({
+      ...prev,
+      [type]: !prev[type],
+    }));
+  }
+
+  // Handle selection changes for options
+  function handleModeChange(newMode) {
+    setOptions({
+      mode: newMode,
+      type: typeOptions[newMode][0]
+    });
+  }
+
+  function handleTypeChange(newType) {
+    setOptions((prev) => ({
+      ...prev,
+      type: newType
+    }));
   }
 
   return (
@@ -47,6 +83,38 @@ function App() {
         />
         <button type="submit">Greet</button>
       </form> */}
+
+      <div className="button-grid">
+        <button onClick={() => toggleConnection('camera')}>
+          {connections.camera ? "Disconnect Camera" : "Connect Camera"}
+        </button>
+        <button onClick={() => toggleConnection('can')}>
+          {connections.can ? "Disconnect CAN" : "Connect CAN"}
+        </button>
+        <button>Image Sampling</button>
+        <button>Random Scramble</button>
+        <div className="button-with-select">
+          <button>Run</button>
+          <select
+            value={options.mode}
+            onChange={(e) => handleModeChange(e.target.value)}
+          >
+            <option value="solve">Solve</option>
+            <option value="trick">Trick</option>
+            <option value="test">Test</option>
+          </select>
+        </div>
+        <div className="button-with-select">
+          <select
+            value={options.type}
+            onChange={(e) => handleTypeChange(e.target.value)}
+          >
+            {typeOptions[options.mode].map((type) => (
+              <option key={type} value={type}>{type}</option>
+            ))}
+          </select>
+        </div>
+      </div>
       <p>{greetMsg}</p>
     </main>
   );
