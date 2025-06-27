@@ -94,7 +94,7 @@ function App() {
         <button>Image Sampling</button>
         <button>Random Scramble</button>
         <div className="button-with-select">
-          <button>Run</button>
+        <button className="button-run">Run</button>
           <select
             value={options.mode}
             onChange={(e) => handleModeChange(e.target.value)}
@@ -103,8 +103,6 @@ function App() {
             <option value="trick">Trick</option>
             <option value="test">Test</option>
           </select>
-        </div>
-        <div className="button-with-select">
           <select
             value={options.type}
             onChange={(e) => handleTypeChange(e.target.value)}
@@ -114,6 +112,7 @@ function App() {
             ))}
           </select>
         </div>
+        <button className="button-stop">Stop</button>
       </div>
       <p>{greetMsg}</p>
     </main>

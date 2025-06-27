@@ -79,6 +79,36 @@ button {
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
+.button-run {
+  background-color: green;
+  color: white;
+  border: 1px solid green;
+}
+
+.button-run:hover {
+  border-color: darkgreen;
+}
+
+.button-run:active {
+  border-color: #396cd8;
+  background-color: darkgreen;
+}
+
+.button-stop {
+  background-color: red;
+  color: white;
+  border: 1px solid red;
+}
+
+.button-stop:hover {
+  border-color: darkred;
+}
+
+.button-stop:active {
+  border-color: #396cd8;
+  background-color: rgb(209, 30, 30);
+}
+
 button {
   cursor: pointer;
 }
