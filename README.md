@@ -19,9 +19,8 @@ npm run tauri android dev
 
 ## Building Error
 ```bash
-lsof -i :<port>
+lsof -i :1420
 ```
 Then,
 ```bash
 kill -9 <PID>
-```# Self-Solving-Rubik-Cube-firmware-gui
