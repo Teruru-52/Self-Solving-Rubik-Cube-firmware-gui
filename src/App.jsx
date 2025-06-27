@@ -7,6 +7,8 @@ import "./App.css";
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
+  const [stateLog, setStateLog] = useState(["", "", "", "", ""]);
+  const [messageLog, setMessageLog] = useState(["", "", "", "", ""]);
   const [connections, setConnections] = useState({
     camera: false,
     can: false
@@ -24,6 +26,22 @@ function App() {
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
     setGreetMsg(await invoke("greet", { name }));
+  }
+
+  function addStateLog(newComment) {
+    setStateLog((prev) => {
+      const updated = [...prev, newComment];
+      if (updated.length > 5) updated.shift(); // 最新5件のみ
+      return updated;
+    });
+  }
+
+  function addMessageLog(newComment) {
+    setMessageLog((prev) => {
+      const updated = [...prev, newComment];
+      if (updated.length > 5) updated.shift();
+      return updated;
+    });
   }
 
   // Toggle connection state
@@ -91,10 +109,13 @@ function App() {
         <button onClick={() => toggleConnection('can')}>
           {connections.can ? "Disconnect CAN" : "Connect CAN"}
         </button>
-        <button>Image Sampling</button>
-        <button>Random Scramble</button>
+        <button
+        onClick={() => addMessageLog('Image smapling command sent.')}>Image Sampling</button>
+        <button
+        onClick={() => addMessageLog('Random scramble command sent.')}>Random Scramble</button>
         <div className="button-with-select">
-        <button className="button-run">Run</button>
+          <button className="button-run"
+            onClick={() => addMessageLog('Run command sent.')}>Run</button>
           <select
             value={options.mode}
             onChange={(e) => handleModeChange(e.target.value)}
@@ -112,9 +133,34 @@ function App() {
             ))}
           </select>
         </div>
-        <button className="button-stop">Stop</button>
+        <button className="button-stop"
+          onClick={() => addMessageLog('Stop command sent.')}>Stop</button>
       </div>
-      <p>{greetMsg}</p>
+      <div className="logs">
+        {/* State log */}
+        <div className="comment-container">
+          <div className="comment-label">State log</div>
+          <div className="comment-display">
+            {stateLog.map((msg, idx) => (
+              <div key={idx} className="comment-line">
+                {msg !== "" ? msg : <span>&nbsp;</span>}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Message log */}
+        <div className="comment-container">
+          <div className="comment-label">Message log</div>
+          <div className="comment-display">
+            {messageLog.map((msg, idx) => (
+              <div key={idx} className="comment-line">
+                {msg !== "" ? msg : <span>&nbsp;</span>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </main>
   );
 }
