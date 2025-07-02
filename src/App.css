@@ -22,13 +22,29 @@
   -webkit-text-size-adjust: 100%;
 }
 
-.container {
-  margin: 0;
-  padding-top: 10vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.main-title {
   text-align: center;
+  width: 100%;
+}
+
+.app-layout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.left-panel {
+  width: 50%;
+  padding: 2em;
+  box-sizing: border-box;
+  background-color: #f0f0f0;
+}
+
+.right-panel {
+  width: 50%;
+  padding: 2em;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .logo {
