@@ -5,6 +5,7 @@ import Header from "./Header.jsx";
 import ConnectionButtons from "./ConnectionButtons.jsx";
 import ControlPanel from "./ControlPanel.jsx";
 import Logs from "./Logs.jsx";
+import CubeDisplay from "./CubeDisplay.jsx";
 
 function App() {
   const [name, setName] = useState("");
@@ -31,6 +32,16 @@ function App() {
     trick: ["move-24", "move-112", "move-126"],
     test: ["move-U", "move-D", "move-R", "move-L", "move-F", "move-B"],
   };
+  const colorCycle = ["white", "red", "blue", "orange", "green", "yellow"];
+  const initialCubeColors = {
+    U: Array(9).fill("white"),
+    L: Array(9).fill("white"),
+    F: Array(9).fill("white"),
+    R: Array(9).fill("white"),
+    D: Array(9).fill("white"),
+    B: Array(9).fill("white"),
+  };
+  const [cubeColors, setCubeColors] = useState(initialCubeColors);
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
@@ -68,16 +79,28 @@ function App() {
     }));
   }
 
+  function changeCubeColor(face, index) {
+    setCubeColors((prev) => {
+      const nextColorIndex =
+        (colorCycle.indexOf(prev[face][index]) + 1) % colorCycle.length;
+      const newFaceColors = [...prev[face]];
+      newFaceColors[index] = colorCycle[nextColorIndex];
+      return { ...prev, [face]: newFaceColors };
+    });
+  }
+
   return (
     <div>
-      <Header/>
+      <Header />
       <div className="app-layout">
         <div className="left-panel">
-          <h2>左側のコンテンツ</h2>
-          <p>ここにカメラ映像や別の情報などを表示できます。</p>
+          <CubeDisplay
+            cubeColors={cubeColors}
+            changeCubeColor={changeCubeColor}
+          />
         </div>
         <main className="right-panel">
-        <ConnectionButtons
+          <ConnectionButtons
             connections={connections}
             toggleConnection={toggleConnection}
             addLog={addLog}
