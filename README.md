@@ -35,5 +35,5 @@ kill -9 <PID>
 ## Format
 
 ```bash
-npx prettier . --write
+npm run format
 ```
