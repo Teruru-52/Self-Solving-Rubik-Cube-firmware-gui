@@ -22,6 +22,7 @@ export default function ControlPanel({
           <option value="solve">Solve</option>
           <option value="trick">Trick</option>
           <option value="test">Test</option>
+          <option value="scramble">Scramble</option>
         </select>
         <select
           value={options.type}

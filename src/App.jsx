@@ -4,8 +4,9 @@ import "./App.css";
 import Header from "./Header.jsx";
 import ConnectionButtons from "./ConnectionButtons.jsx";
 import ControlPanel from "./ControlPanel.jsx";
-import Logs from "./Logs.jsx";
+import { StateLog, MessageLog } from "./Logs.jsx";
 import CubeDisplay from "./CubeDisplay.jsx";
+import CamImage from "./CamImage.jsx";
 
 function App() {
   const [name, setName] = useState("");
@@ -14,6 +15,7 @@ function App() {
   const [connections, setConnections] = useState({
     camera: false,
     can: false,
+    led: false
   });
   const [options, setOptions] = useState({
     mode: "solve",
@@ -31,15 +33,23 @@ function App() {
     ],
     trick: ["move-24", "move-112", "move-126"],
     test: ["move-U", "move-D", "move-R", "move-L", "move-F", "move-B"],
+    scramble: ["random-10", "random-20", "random-30"],
   };
-  const colorCycle = ["white", "red", "blue", "orange", "green", "yellow"];
+  const colorCycle = [
+    "white",
+    "red",
+    "royalblue",
+    "orange",
+    "forestgreen",
+    "yellow",
+  ];
   const initialCubeColors = {
     U: Array(9).fill("white"),
-    L: Array(9).fill("white"),
-    F: Array(9).fill("white"),
-    R: Array(9).fill("white"),
-    D: Array(9).fill("white"),
-    B: Array(9).fill("white"),
+    L: Array(9).fill("orange"),
+    F: Array(9).fill("forestgreen"),
+    R: Array(9).fill("red"),
+    D: Array(9).fill("yellow"),
+    B: Array(9).fill("royalblue"),
   };
   const [cubeColors, setCubeColors] = useState(initialCubeColors);
 
@@ -94,6 +104,8 @@ function App() {
       <Header />
       <div className="app-layout">
         <div className="left-panel">
+          <CamImage />
+          <StateLog logs={stateLog} />
           <CubeDisplay
             cubeColors={cubeColors}
             changeCubeColor={changeCubeColor}
@@ -114,7 +126,11 @@ function App() {
             addLog={addLog}
             setMessageLog={setMessageLog}
           />
-          <Logs stateLog={stateLog} messageLog={messageLog} />
+          <MessageLog logs={messageLog} />
+          <CubeDisplay
+            cubeColors={cubeColors}
+            changeCubeColor={changeCubeColor}
+          />
         </main>
       </div>
     </div>

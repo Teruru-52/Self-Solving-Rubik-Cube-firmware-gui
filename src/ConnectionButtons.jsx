@@ -17,10 +17,8 @@ export default function ConnectionButtons({
       >
         Image Sampling
       </button>
-      <button
-        onClick={() => addLog(setMessageLog, "Random scramble command sent.")}
-      >
-        Random Scramble
+      <button onClick={() => toggleConnection("led")}>
+        {connections.led ? "Turn off LED" : "Turn on LED"}
       </button>
     </div>
   );

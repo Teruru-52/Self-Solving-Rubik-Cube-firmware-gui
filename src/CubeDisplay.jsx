@@ -48,16 +48,27 @@ export default function CubeDisplay({ cubeColors, changeCubeColor }) {
 function CubeFace({ face, colors, changeCubeColor }) {
   return (
     <div className="cube-grid">
-      {colors.map((color, index) => (
-        <div
-          key={index}
-          className="cube-cell"
-          style={{ backgroundColor: color }}
-          onClick={() => changeCubeColor(face, index)}
-        >
-          {index === 4 && <div className="face-label">{face}</div>}
-        </div>
-      ))}
+      {colors.map((color, index) => {
+        const isCenter = index === 4;
+
+        return (
+          <div
+            key={index}
+            className="cube-cell"
+            style={{
+              backgroundColor: color,
+              cursor: isCenter ? "default" : "pointer", // Disable pointer events for center piece
+            }}
+            onClick={() => {
+              if (!isCenter) {
+                changeCubeColor(face, index);
+              }
+            }}
+          >
+            {isCenter && <div className="face-label">{face}</div>}
+          </div>
+        );
+      })}
     </div>
   );
 }
