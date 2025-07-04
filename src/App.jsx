@@ -15,7 +15,7 @@ function App() {
   const [connections, setConnections] = useState({
     camera: false,
     can: false,
-    led: false
+    led: false,
   });
   const [options, setOptions] = useState({
     mode: "solve",

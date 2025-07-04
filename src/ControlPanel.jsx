@@ -11,7 +11,12 @@ export default function ControlPanel({
       <div className="button-with-select">
         <button
           className="button-run"
-          onClick={() => addLog(setMessageLog, "Run command sent.")}
+          onClick={() =>
+            addLog(
+              setMessageLog,
+              `Run command sent. (Mode: ${options.mode}, Type: ${options.type})`,
+            )
+          }
         >
           Run
         </button>
@@ -19,10 +24,10 @@ export default function ControlPanel({
           value={options.mode}
           onChange={(e) => handleModeChange(e.target.value)}
         >
-          <option value="solve">Solve</option>
-          <option value="trick">Trick</option>
-          <option value="test">Test</option>
-          <option value="scramble">Scramble</option>
+          <option value="solve">solve</option>
+          <option value="trick">trick</option>
+          <option value="test">test</option>
+          <option value="scramble">scramble</option>
         </select>
         <select
           value={options.type}

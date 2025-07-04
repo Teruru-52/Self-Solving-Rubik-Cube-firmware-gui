@@ -6,10 +6,22 @@ export default function ConnectionButtons({
 }) {
   return (
     <div className="button-grid">
-      <button onClick={() => toggleConnection("camera")}>
+      <button
+        className={connections.camera ? "disconnect-button" : "connect-button"}
+        onClick={() => {
+          toggleConnection("camera");
+          addLog(setMessageLog, "Camera connection command sent.");
+        }}
+      >
         {connections.camera ? "Disconnect Camera" : "Connect Camera"}
       </button>
-      <button onClick={() => toggleConnection("can")}>
+      <button
+        className={connections.can ? "disconnect-button" : "connect-button"}
+        onClick={() => {
+          toggleConnection("can");
+          addLog(setMessageLog, "CAN connection command sent.");
+        }}
+      >
         {connections.can ? "Disconnect CAN" : "Connect CAN"}
       </button>
       <button
@@ -17,7 +29,13 @@ export default function ConnectionButtons({
       >
         Image Sampling
       </button>
-      <button onClick={() => toggleConnection("led")}>
+      <button
+        className={connections.led ? "disconnect-button" : "connect-button"}
+        onClick={() => {
+          toggleConnection("led");
+          addLog(setMessageLog, "LED command sent.");
+        }}
+      >
         {connections.led ? "Turn off LED" : "Turn on LED"}
       </button>
     </div>
