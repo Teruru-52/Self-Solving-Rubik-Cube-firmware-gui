@@ -3,6 +3,7 @@ export default function ControlPanel({
   typeOptions,
   handleModeChange,
   handleTypeChange,
+  handleSpeedChange,
   addLog,
   setMessageLog,
 }) {
@@ -14,7 +15,7 @@ export default function ControlPanel({
           onClick={() =>
             addLog(
               setMessageLog,
-              `Run command sent. (Mode: ${options.mode}, Type: ${options.type})`,
+              `Run command sent. (Mode: ${options.mode}, Type: ${options.type}, Speed: ${options.speed})`,
             )
           }
         >
@@ -39,6 +40,16 @@ export default function ControlPanel({
             </option>
           ))}
         </select>
+        <select
+      value={options.speed}
+      onChange={(e) => handleSpeedChange(Number(e.target.value))}
+    >
+      {[1, 2, 3, 4, 5].map((speed) => (
+        <option key={speed} value={speed}>
+          speed: {speed}
+        </option>
+      ))}
+    </select>
       </div>
       <button
         className="button-stop"

@@ -20,6 +20,7 @@ function App() {
   const [options, setOptions] = useState({
     mode: "solve",
     type: "normal",
+    speed: 1,
   });
   const typeOptions = {
     solve: [
@@ -89,6 +90,13 @@ function App() {
     }));
   }
 
+  function handleSpeedChange(newSpeed) {
+    setOptions((prev) => ({
+      ...prev,
+      speed: newSpeed,
+    }));
+  }
+
   function changeCubeColor(face, index) {
     setCubeColors((prev) => {
       const nextColorIndex =
@@ -123,6 +131,7 @@ function App() {
             typeOptions={typeOptions}
             handleModeChange={handleModeChange}
             handleTypeChange={handleTypeChange}
+            handleSpeedChange={handleSpeedChange}
             addLog={addLog}
             setMessageLog={setMessageLog}
           />
