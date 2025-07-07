@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
-import "./App.css";
-import Header from "./Header.jsx";
-import ConnectionButtons from "./ConnectionButtons.jsx";
-import ControlPanel from "./ControlPanel.jsx";
-import { StateLog, MessageLog } from "./Logs.jsx";
-import CubeDisplay from "./CubeDisplay.jsx";
-import CamImage from "./CamImage.jsx";
+import "./styles/App.css";
+import Header from "./components/Header";
+import ConnectionButtons from "./components/ConnectionButtons";
+import ControlPanel from "./components/ControlPanel";
+import { StateLog, MessageLog } from "./components/Logs";
+import CubeDisplay from "./components/CubeDisplay";
+import CamImage from "./components/CamImage";
 
 function App() {
   const [name, setName] = useState("");

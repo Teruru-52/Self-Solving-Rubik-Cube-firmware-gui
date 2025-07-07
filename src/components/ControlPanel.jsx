@@ -1,3 +1,8 @@
+import CamImage from "./CamImage";
+import ConnectionButtons from "./ConnectionButtons";
+import CubeDisplay from "./CubeDisplay";
+import { StateLog, MessageLog } from "./Logs";
+
 export default function ControlPanel({
   options,
   typeOptions,

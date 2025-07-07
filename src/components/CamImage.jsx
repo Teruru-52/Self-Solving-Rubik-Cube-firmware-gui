@@ -1,8 +1,8 @@
 // image test
-import image1 from "./assets/github.png";
-import image2 from "./assets/github.png";
-import image3 from "./assets/github.png";
-import image4 from "./assets/github.png";
+import image1 from "../assets/github.png";
+import image2 from "../assets/github.png";
+import image3 from "../assets/github.png";
+import image4 from "../assets/github.png";
 
 function ImageRow() {
   return (

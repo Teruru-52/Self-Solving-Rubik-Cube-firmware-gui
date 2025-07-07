@@ -1,5 +1,5 @@
-import githubLogo from "./assets/github.png";
-import reactLogo from "./assets/react.svg";
+import githubLogo from "../assets/github.png";
+import reactLogo from "../assets/react.svg";
 
 export default function Header() {
   return (
