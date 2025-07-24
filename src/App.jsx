@@ -9,6 +9,7 @@ import CubeDisplay from "./components/CubeDisplay";
 import CamImage from "./components/CamImage";
 
 function App() {
+  const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
   const [stateLog, setStateLog] = useState(["", "", "", "", ""]);
   const [messageLog, setMessageLog] = useState(["", "", "", "", ""]);
@@ -54,11 +55,6 @@ function App() {
   };
   const [cubeColors, setCubeColors] = useState(initialCubeColors);
 
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    setGreetMsg(await invoke("greet", { name }));
-  }
-
   function addLog(setter, newComment) {
     setter((prev) => {
       const updated = [...prev, newComment];
@@ -67,7 +63,7 @@ function App() {
     });
   }
 
-  // Toggle connection state
+  // Toggle camera connection state
   function toggleConnection(type) {
     setConnections((prev) => ({
       ...prev,
@@ -77,10 +73,11 @@ function App() {
 
   // Handle selection changes for options
   function handleModeChange(newMode) {
-    setOptions({
+    setOptions((prev) => ({
+      ...prev,
       mode: newMode,
       type: typeOptions[newMode][0],
-    });
+    }));
   }
 
   function handleTypeChange(newType) {
@@ -127,6 +124,7 @@ function App() {
             setMessageLog={setMessageLog}
           />
           <ControlPanel
+            connections={connections}
             options={options}
             typeOptions={typeOptions}
             handleModeChange={handleModeChange}
