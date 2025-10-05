@@ -6,6 +6,8 @@ export default function ConnectionButtons({
   toggleConnection,
   addLog,
   setMessageLog,
+  runState,
+  setRunState,
 }) {
   async function connect_camera(connect) {
     const response = await invoke("connect_camera", { connect });
@@ -29,7 +31,12 @@ export default function ConnectionButtons({
     if (!connections.can) {
       return "[ERR] CAN is not connected.";
     }
+    if (runState) {
+      return "[ERR] Already running.";
+    }
+
     const response = await invoke("sample_image");
+    setRunState(true);
     return response;
   }
 

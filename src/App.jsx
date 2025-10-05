@@ -9,8 +9,7 @@ import CubeDisplay from "./components/CubeDisplay";
 import CamImage from "./components/CamImage";
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
+  const [runState, setRunState] = useState(false);
   const [stateLog, setStateLog] = useState(["", "", "", "", ""]);
   const [messageLog, setMessageLog] = useState(["", "", "", "", ""]);
   const [connections, setConnections] = useState({
@@ -122,6 +121,8 @@ function App() {
             toggleConnection={toggleConnection}
             addLog={addLog}
             setMessageLog={setMessageLog}
+            runState={runState}
+            setRunState={setRunState}
           />
           <ControlPanel
             connections={connections}
@@ -132,6 +133,8 @@ function App() {
             handleSpeedChange={handleSpeedChange}
             addLog={addLog}
             setMessageLog={setMessageLog}
+            runState={runState}
+            setRunState={setRunState}
           />
           <MessageLog logs={messageLog} />
           <CubeDisplay

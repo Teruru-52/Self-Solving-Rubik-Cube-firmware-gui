@@ -14,15 +14,15 @@ export default function ControlPanel({
   handleSpeedChange,
   addLog,
   setMessageLog,
+  runState,
+  setRunState,
 }) {
-  const [runState, setRunState] = useState(false);
-
   async function run_solver() {
     if (!connections.can) {
       return "[ERR] CAN is not connected.";
     }
     if (runState) {
-      return "[ERR] Solver is already running.";
+      return "[ERR] Already running.";
     }
 
     addLog(
@@ -31,7 +31,7 @@ export default function ControlPanel({
     )
     const response = await invoke("run_solver", {
       mode: options.mode,
-      ctrlType: options.type,
+      ctrltype: options.type,
       speed: options.speed,
     });
     setRunState(true);
